@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PEDRO — Mapper Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+  --bg:#08070d;
+  --panel:#110e1b;
+  --line:#2a213b;
+  --text:#f5f1ff;
+  --muted:#a49bb7;
+  --green:#b4ff68;
+  --purple:#8f55ff;
+}
+
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.18;
+  background-image:
+    linear-gradient(#fff 1px,transparent 1px),
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:linear-gradient(to bottom,black,transparent 65%);
+  z-index:20;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.wrap{
+  width:min(1180px,86%);
+  margin:auto;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:28px 0;
+  border-bottom:1px solid var(--line);
+  position:relative;
+  z-index:50;
+}
+
+.brand{
+  font-weight:900;
+  letter-spacing:5px;
+  font-size:22px;
+}
+
+.brand span{
+  color:var(--green);
+}
+
+nav{
+  display:flex;
+  gap:30px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+nav a{
+  transition:.2s;
+}
+
+nav a:hover{
+  color:var(--green);
+}
+
+.button{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:13px 18px;
+  border:1px solid #55456f;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  transition:.25s;
+}
+
+.button:hover{
+  transform:translateY(-2px);
+  border-color:var(--green);
+}
+
+.button.green{
+  background:var(--green);
+  color:#10140a;
+  border-color:var(--green);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:690px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:50px;
+  position:relative;
+}
+
+.eyebrow{
+  color:var(--green);
+  font-size:10px;
+  letter-spacing:3px;
+  font-weight:800;
+}
+
+.hero h1{
+  font-size:clamp(44px,6.2vw,82px);
+  line-height:1.02;
+  letter-spacing:-4px;
+  margin:24px 0;
+}
+
+.hero h1 em{
+  color:var(--green);
+  font-style:normal;
+}
+
+.lead{
+  max-width:470px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.9;
+  margin:0 0 34px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+/* =========================
+   HERO VISUAL
+========================= */
+
+.visual{
+  height:500px;
+  position:relative;
+  display:grid;
+  place-items:center;
+  isolation:isolate;
+}
+
+.halo{
+  position:absolute;
+  width:410px;
+  height:410px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      #4a247c 0,
+      #25143e 40%,
+      transparent 70%
+    );
+  filter:blur(8px);
+  animation:haloPulse 3s ease-in-out infinite;
+}
+
+@keyframes haloPulse{
+  0%,100%{
+    transform:scale(.96);
+    opacity:.75;
+  }
+  50%{
+    transform:scale(1.05);
+    opacity:1;
+  }
+}
+
+/* =========================
+   PLANET
+========================= */
+
+.sphere{
+  width:330px;
+  height:330px;
+  border:1px solid #7651a6;
+  border-radius:50%;
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      #d39aff 0,
+      #7d45b8 18%,
+      #3a1b63 40%,
+      #110b1b 70%
+    );
+
+  box-shadow:
+    0 0 100px #793bce55,
+    inset -35px -40px 75px #000;
+
+  animation:
+    planetBeat 2.8s ease-in-out infinite,
+    planetFloat 6s ease-in-out infinite;
+}
+
+@keyframes planetBeat{
+  0%,100%{
+    transform:scale(1);
+  }
+
+  10%{
+    transform:scale(1.025);
+  }
+
+  20%{
+    transform:scale(1);
+  }
+
+  30%{
+    transform:scale(1.018);
+  }
+
+  42%{
+    transform:scale(1);
+  }
+}
+
+@keyframes planetFloat{
+  0%,100%{
+    margin-top:0;
+  }
+
+  50%{
+    margin-top:-8px;
+  }
+}
+
+/* rotating globe texture */
+
+.sphere:before{
+  content:"";
+  position:absolute;
+  width:150%;
+  height:150%;
+  left:-25%;
+  top:-25%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 25px,
+      #b4ff6818 26px 28px,
+      transparent 29px 60px
+    );
+
+  border-radius:50%;
+
+  transform:rotate(-18deg);
+  animation:globeRotate 14s linear infinite;
+}
+
+.sphere:after{
+  content:"";
+  position:absolute;
+  inset:-40px;
+
+  border:
+    1px solid #b4ff6830;
+
+  border-radius:50%;
+
+  transform:
+    rotate(-35deg)
+    scaleY(.38);
+
+  animation:orbitRotate 10s linear infinite;
+}
+
+@keyframes globeRotate{
+  from{
+    transform:translateX(-20px) rotate(-18deg);
+  }
+
+  to{
+    transform:translateX(20px) rotate(-18deg);
+  }
+}
+
+@keyframes orbitRotate{
+  from{
+    transform:
+      rotate(-35deg)
+      scaleY(.38);
+  }
+
+  to{
+    transform:
+      rotate(325deg)
+      scaleY(.38);
+  }
+}
+
+.sphere-text{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+
+  font-size:150px;
+  font-weight:900;
+  letter-spacing:-12px;
+
+  color:#0d0914;
+  text-shadow:
+    0 0 25px #b4ff6822;
+
+  z-index:5;
+}
+
+/* =========================
+   FLOATING CARDS
+========================= */
+
+.floating{
+  position:absolute;
+  padding:12px 15px;
+  border:1px solid #3b2c51;
+  background:#120d1dcc;
+  backdrop-filter:blur(10px);
+  border-radius:12px;
+  font-size:10px;
+  color:var(--muted);
+  box-shadow:0 10px 35px #0005;
+  z-index:10;
+}
+
+.floating b{
+  display:block;
+  color:var(--green);
+  font-size:12px;
+  margin-bottom:5px;
+}
+
+.f1{
+  top:25px;
+  right:0;
+  animation:floatOne 4s ease-in-out infinite;
+}
+
+.f2{
+  bottom:42px;
+  left:0;
+  animation:floatTwo 5s ease-in-out infinite;
+}
+
+@keyframes floatOne{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+@keyframes floatTwo{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(7px)}
+}
+
+/* =========================
+   FILM BACKGROUND
+========================= */
+
+.film{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:150vw;
+  height:230px;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(-8deg);
+
+  display:flex;
+  gap:18px;
+
+  pointer-events:none;
+  opacity:.13;
+
+  z-index:-1;
+
+  overflow:hidden;
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+}
+
+.film-track{
+  display:flex;
+  gap:18px;
+  width:max-content;
+
+  animation:
+    filmMove 45s linear infinite;
+}
+
+@keyframes filmMove{
+  from{
+    transform:translateX(0);
+  }
+
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+.film-card{
+  width:280px;
+  height:180px;
+  flex-shrink:0;
+
+  border:1px solid #8f55ff66;
+  border-radius:14px;
+
+  overflow:hidden;
+
+  background:#171023;
+
+  position:relative;
+}
+
+.film-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:
+    grayscale(.35)
+    brightness(.55)
+    saturate(.8);
+}
+
+.film-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent,
+      #8f55ff22,
+      #b4ff6815
+    );
+}
+
+.film-label{
+  position:absolute;
+  left:14px;
+  bottom:12px;
+  color:#fff;
+  font-size:9px;
+  letter-spacing:2px;
+  z-index:2;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+  padding:105px 0;
+}
+
+.section-top{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:38px;
+}
+
+.section h2{
+  font-size:clamp(34px,4.5vw,58px);
+  letter-spacing:-2px;
+  margin:14px 0 0;
+}
+
+.section-note{
+  color:var(--muted);
+  font-size:12px;
+  max-width:300px;
+  line-height:1.7;
+}
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.project{
+  min-width:0;
+}
+
+.thumb{
+  height:280px;
+  border:1px solid #352744;
+  border-radius:18px;
+  overflow:hidden;
+  position:relative;
+  background:#171023;
+  transition:.3s;
+}
+
+.project:hover .thumb{
+  transform:translateY(-5px);
+  border-color:#8b61bd;
+  box-shadow:0 15px 45px #0008;
+}
+
+.thumb:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,transparent,#ffffff0a);
+  z-index:2;
+}
+
+.thumb .number{
+  position:absolute;
+  top:17px;
+  left:18px;
+  color:var(--green);
+  font-size:11px;
+  font-weight:800;
+  z-index:5;
+}
+
+.thumb .scene{
+  position:absolute;
+  inset:0;
+}
+
+.scene.castle{
+  background:
+    radial-gradient(circle at 72% 20%,#e1a4ff 0,transparent 20%),
+    linear-gradient(130deg,#29133d,#100b18 55%,#402060);
+}
+
+.scene.castle:after{
+  content:"";
+  position:absolute;
+  left:18%;
+  right:10%;
+  bottom:0;
+  height:72%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #1c102c 0 35px,
+      #45245d 36px 38px
+    );
+
+  clip-path:
+    polygon(
+      0 35%,
+      20% 20%,
+      33% 40%,
+      50% 0,
+      70% 25%,
+      100% 10%,
+      100% 100%,
+      0 100%
+    );
+
+  opacity:.85;
+}
+
+.scene.seoul{
+  background:
+    radial-gradient(circle at 70% 25%,#8d68c2 0,transparent 22%),
+    linear-gradient(140deg,#102d3d,#171326 52%,#312344);
+}
+
+.scene.seoul:after{
+  content:"";
+  position:absolute;
+  inset:25% 8% 0;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #151321 0 32px,
+      #6c557e 33px 35px
+    );
+
+  clip-path:
+    polygon(
+      0 20%,
+      15% 10%,
+      30% 28%,
+      43% 0,
+      58% 17%,
+      72% 7%,
+      100% 25%,
+      100% 100%,
+      0 100%
+    );
+
+  opacity:.8;
+}
+
+.scene.ww2{
+  background:
+    radial-gradient(circle at 35% 20%,#d4bd80 0,transparent 20%),
+    linear-gradient(140deg,#536048,#25251d 55%,#0e0f11);
+}
+
+.scene.ww2:after{
+  content:"";
+  position:absolute;
+  left:8%;
+  right:8%;
+  bottom:0;
+  height:48%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #24251d 0 55px,
+      #73734a 56px 58px
+    );
+
+  clip-path:
+    polygon(
+      0 30%,
+      22% 0,
+      42% 20%,
+      65% 5%,
+      100% 35%,
+      100% 100%,
+      0 100%
+    );
+}
+
+.tag{
+  display:inline-block;
+  margin-top:20px;
+  color:var(--green);
+  font-size:10px;
+  letter-spacing:1px;
+  font-weight:800;
+}
+
+.project h3{
+  font-size:21px;
+  margin:10px 0 7px;
+}
+
+.project p{
+  font-size:12px;
+  line-height:1.7;
+  color:var(--muted);
+  margin:0;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #100b19,
+      #0b0912
+    );
+
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.about p{
+  color:var(--muted);
+  font-size:15px;
+  line-height:2;
+  margin:45px 0 0;
+}
+
+.facts{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:35px;
+}
+
+.fact{
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#100c18;
+}
+
+.fact b{
+  display:block;
+  color:var(--green);
+  font-size:23px;
+  margin-bottom:8px;
+}
+
+.fact span{
+  font-size:11px;
+  color:var(--muted);
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+  text-align:center;
+  padding:125px 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 0,
+      #342052,
+      transparent 55%
+    );
+}
+
+.contact h2{
+  max-width:650px;
+  margin:16px auto 18px;
+}
+
+.contact p{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:30px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  padding:30px 0;
+  border-top:1px solid var(--line);
+
+  display:flex;
+  justify-content:space-between;
+
+  color:#6f657f;
+  font-size:11px;
+}
+
+.footer span{
+  color:var(--green);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+  .wrap{
+    width:88%;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    padding:70px 0 30px;
+    min-height:auto;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+  .visual{
+    height:390px;
+  }
+
+  .sphere{
+    width:270px;
+    height:270px;
+  }
+
+  .sphere-text{
+    font-size:120px;
+  }
+
+  .halo{
+    width:340px;
+    height:340px;
+  }
+
+  .film{
+    width:180vw;
+  }
+
+  .projects,
+  .about{
+    grid-template-columns:1fr;
+  }
+
+  .section-top{
+    display:block;
+  }
+
+  .section-note{
+    margin-top:18px;
+  }
+
+  .thumb{
+    height:240px;
+  }
+
+  .about p{
+    margin-top:0;
+  }
+
+  .footer{
+    display:block;
+    line-height:2;
+  }
+
+  .f1{
+    right:0;
+  }
+
+  .f2{
+    left:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<header class="topbar">
+
+  <a class="brand" href="#top">
+    P<span>EDRO</span>
+  </a>
+
+  <nav>
+    <a href="#work">Работы</a>
+    <a href="#about">Обо мне</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+
+  <a class="button" href="#contact">
+    Связаться ↗
+  </a>
+
+</header>
+
+
+<main id="top">
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      HAMMER++ / SOURCE / GMOD
+    </div>
+
+    <h1>
+      Создаю миры,<br>
+      <em>в которых</em><br>
+      хочется играть
+    </h1>
+
+    <p class="lead">
+      Pedro — mapper, который превращает идеи
+      в атмосферные игровые пространства.
+      Планировка, свет, детали и настроение
+      каждой локации.
+    </p>
+
+    <div class="hero-actions">
+
+      <a class="button green" href="#work">
+        Смотреть работы ↓
+      </a>
+
+      <a class="button" href="#about">
+        Обо мне ↗
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="visual">
+
+    <!-- ФОНОВАЯ ПЛЁНКА -->
+
+    <div class="film">
+
+      <div class="film-track">
+
+        <div class="film-card">
+          <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=70">
+          <div class="film-label">PROJECT 01</div>
+        </div>
+
+        <div class="film-card">
+          <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=700&q=70">
+          <div class="film-label">PROJECT 02</div>
+        </div>
+
+        <div class="film-card">
+          <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=700&q=70">
+          <div class="film-label">PROJECT 03</div>
+        </div>
+
+        <div class="film-card">
+          <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=700&q=70">
+          <div class="film-label">PROJECT 04</div>
+        </div>
+
+        <!-- повтор для бесконечной ленты -->
+
+        <div class="film-card">
+          <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=70">
+          <div class="film-label">PROJECT 01</div>
+        </div>
+
+        <div class="film-card">
+          <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=700&q=70">
+          <div class="film-label">PROJECT 02</div>
+        </div>
+
+        <div class="film-card">
+          <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=700&q=70">
+          <div class="film-label">PROJECT 03</div>
+        </div>
+
+        <div class="film-card">
+          <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=700&q=70">
+          <div class="film-label">PROJECT 04</div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- СВЕЧЕНИЕ -->
+
+    <div class="halo"></div>
+
+
+    <!-- ШАР -->
+
+    <div class="sphere">
+      <div class="sphere-text">P</div>
+    </div>
+
+
+    <!-- FLOATING INFO -->
+
+    <div class="floating f1">
+      <b>01 / CRAFT</b>
+      Level design &amp; atmosphere
+    </div>
+
+    <div class="floating f2">
+      <b>AVAILABLE FOR PROJECTS</b>
+      GMod · Source · Hammer++
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="work" class="section">
+
+  <div class="section-top">
+
+    <div>
+
+      <div class="eyebrow">
+        SELECTED PROJECTS
+      </div>
+
+      <h2>
+        Мои работы
+      </h2>
+
+    </div>
+
+    <div class="section-note">
+      Несколько направлений, с которыми я работаю:
+      от аниме-локаций до современных городов
+      и исторических карт.
+    </div>
+
+  </div>
+
+
+  <div class="projects">
+
+
+    <article class="project">
+
+      <div class="thumb">
+
+        <div class="scene castle"></div>
+
+        <span class="number">
+          01
+        </span>
+
+      </div>
+
+      <span class="tag">
+        ANIME ENVIRONMENT · HAMMER++
+      </span>
+
+      <h3>
+        Infinity Castle
+      </h3>
+
+      <p>
+        Атмосферные пространства, коридоры
+        и архитектура в стиле Kimetsu no Yaiba.
+      </p>
+
+    </article>
+
+
+    <article class="project">
+
+      <div class="thumb">
+
+        <div class="scene seoul"></div>
+
+        <span class="number">
+          02
+        </span>
+
+      </div>
+
+      <span class="tag">
+        URBAN MAP · NIGHT ATMOSPHERE
+      </span>
+
+      <h3>
+        Modern Seoul
+      </h3>
+
+      <p>
+        Современный корейский город с высотками,
+        улицами, рынком и ночным светом.
+      </p>
+
+    </article>
+
+
+    <article class="project">
+
+      <div class="thumb">
+
+        <div class="scene ww2"></div>
+
+        <span class="number">
+          03
+        </span>
+
+      </div>
+
+      <span class="tag">
+        HISTORICAL VILLAGE · GMOD
+      </span>
+
+      <h3>
+        WW2RP — Leskino
+      </h3>
+
+      <p>
+        Историческая деревня, лес, мосты
+        и игровые зоны для военного RP.
+      </p>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+<section id="about" class="section about">
+
+  <div>
+
+    <div class="eyebrow">
+      ABOUT PEDRO
+    </div>
+
+    <h2>
+      Карты<br>
+      с характером
+    </h2>
+
+  </div>
+
+
+  <div>
+
+    <p>
+      Работаю с Hammer++ и Source.
+      Люблю продумывать планировку, свет,
+      атмосферу и детали, которые делают
+      игровую локацию живой и запоминающейся.
+    </p>
+
+
+    <div class="facts">
+
+      <div class="fact">
+        <b>01</b>
+        <span>Level design</span>
+      </div>
+
+      <div class="fact">
+        <b>02</b>
+        <span>Lighting &amp; mood</span>
+      </div>
+
+      <div class="fact">
+        <b>03</b>
+        <span>Source / GMod</span>
+      </div>
+
+      <div class="fact">
+        <b>04</b>
+        <span>World building</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="contact" class="contact">
+
+  <div class="eyebrow">
+    LET'S WORK TOGETHER
+  </div>
+
+  <h2>
+    Есть идея для карты?
+  </h2>
+
+  <p>
+    Напиши мне, и вместе обсудим будущий проект.
+  </p>
+
+  <a class="button green" href="mailto:your@email.com">
+    Написать мне ↗
+  </a>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+  <div>
+    © 2026 <span>PEDRO</span> · Mapper Portfolio
+  </div>
+
+  <div>
+    Built with passion for game worlds
+  </div>
+
+</footer>
+
+</div>
+
+</body>
+</html>
