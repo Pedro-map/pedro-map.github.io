@@ -248,6 +248,178 @@ a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1180px,
   animation:none !important;
 }
 
+
+/* Discord contact modal */
+.discord-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(6px);
+}
+
+.discord-modal.is-open {
+  display: flex;
+}
+
+.discord-modal-box {
+  position: relative;
+  width: min(420px, 100%);
+  padding: 28px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px;
+  background: #111;
+  color: #fff;
+  box-shadow: 0 20px 70px rgba(0,0,0,.45);
+  text-align: center;
+}
+
+.discord-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #aaa;
+  font-size: 26px;
+  line-height: 34px;
+  cursor: pointer;
+}
+
+.discord-modal-close:hover {
+  background: rgba(255,255,255,.08);
+  color: #fff;
+}
+
+.discord-modal-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #5865F2;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.discord-modal-box h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
+.discord-modal-box p {
+  margin: 0 auto 18px;
+  color: #b8b8b8;
+  line-height: 1.55;
+}
+
+.discord-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  background: rgba(255,255,255,.05);
+  font-weight: 700;
+}
+
+.discord-copy {
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 11px;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+.discord-copy:hover {
+  background: rgba(255,255,255,.16);
+}
+
+.discord-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .discord-modal-box {
+    padding: 24px 18px;
+  }
+}
+
+
+
+/* ===== Floating music player ===== */
+.music-player{
+  --mx:50%; --my:50%;
+  position:fixed;
+  right:28px;
+  bottom:28px;
+  z-index:9000;
+  width:min(350px,calc(100vw - 32px));
+  padding:13px 14px 12px;
+  border:1px solid rgba(143,85,255,.48);
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(17,14,27,.94),rgba(8,7,13,.94));
+  box-shadow:0 18px 55px rgba(0,0,0,.52),0 0 35px rgba(143,85,255,.12),inset 0 0 24px rgba(143,85,255,.035);
+  backdrop-filter:blur(18px) saturate(1.25);
+  -webkit-backdrop-filter:blur(18px) saturate(1.25);
+  transform:perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0);
+  transform-style:preserve-3d;
+  transition:transform .16s ease-out,border-color .2s ease,box-shadow .2s ease;
+  will-change:transform;
+  overflow:hidden;
+}
+.music-player::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  pointer-events:none;
+  background:radial-gradient(circle at var(--mx) var(--my),rgba(180,255,104,.18),transparent 28%),linear-gradient(110deg,rgba(143,85,255,.12),transparent 42%,rgba(180,255,104,.08));
+  opacity:0;
+  transition:opacity .2s ease;
+}
+.music-player:hover{border-color:rgba(180,255,104,.62);box-shadow:0 22px 65px rgba(0,0,0,.58),0 0 42px rgba(143,85,255,.2),0 0 22px rgba(180,255,104,.07)}
+.music-player:hover::before{opacity:1}
+.music-player > *{position:relative;z-index:1}
+.music-top{display:flex;align-items:center;gap:11px}
+.music-art{
+  width:48px;height:48px;flex:0 0 48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;gap:2px;
+  border:1px solid rgba(180,255,104,.8);
+  background:radial-gradient(circle,#211632 0,#0c0a12 72%);
+  box-shadow:0 0 14px rgba(180,255,104,.2),inset 0 0 18px rgba(143,85,255,.12);
+}
+.music-bar{width:2px;border-radius:5px;background:var(--green);box-shadow:0 0 7px rgba(180,255,104,.7);animation:musicWave .85s ease-in-out infinite}
+.music-bar:nth-child(1){height:10px;animation-delay:-.6s}.music-bar:nth-child(2){height:17px;animation-delay:-.2s}.music-bar:nth-child(3){height:25px;animation-delay:-.45s}.music-bar:nth-child(4){height:14px;animation-delay:-.1s}.music-bar:nth-child(5){height:21px;animation-delay:-.35s}.music-bar:nth-child(6){height:11px;animation-delay:-.7s}.music-player.paused .music-bar{animation-play-state:paused;opacity:.72}
+.music-info{min-width:0;flex:1}.music-title{font-size:13px;font-weight:800;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.music-artist{margin-top:4px;color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-play{width:42px;height:42px;flex:0 0 42px;border:1px solid rgba(143,85,255,.75);border-radius:50%;display:grid;place-items:center;background:rgba(143,85,255,.13);color:var(--text);cursor:pointer;transition:.18s;box-shadow:0 0 16px rgba(143,85,255,.14)}
+.music-play:hover{background:var(--green);border-color:var(--green);color:#0d1208;box-shadow:0 0 22px rgba(180,255,104,.28);transform:scale(1.05)}
+.music-play svg{width:16px;height:16px;fill:currentColor}
+.music-bottom{display:grid;grid-template-columns:42px 1fr 68px;align-items:center;gap:10px;margin-top:10px}
+.music-time{font-size:9px;color:#aaa1b9;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.music-range{--progress:0%;appearance:none;width:100%;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--green) 0,var(--green) var(--progress),#2a213b var(--progress),#2a213b 100%);outline:none;cursor:pointer}
+.music-range::-webkit-slider-thumb{appearance:none;width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 9px rgba(180,255,104,.65);border:0}.music-range::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 9px rgba(180,255,104,.65);border:0}
+.music-volume{display:flex;align-items:center;gap:7px;margin-top:9px}.music-volume-icon{width:17px;height:17px;display:grid;place-items:center;color:#bdb5c9;cursor:pointer}.music-volume-icon svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.music-volume .music-range{height:3px}
+@keyframes musicWave{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1.12)}}
+@media(max-width:620px){.music-player{right:12px;bottom:12px;width:calc(100vw - 24px);padding:11px 12px}.music-art{width:43px;height:43px;flex-basis:43px}.music-play{width:38px;height:38px;flex-basis:38px}.music-bottom{grid-template-columns:38px 1fr 64px}}
+@media(prefers-reduced-motion:reduce){.music-player{transition:none}.music-bar{animation:none}}
+
 </style>
 </head>
 <body>
@@ -365,7 +537,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1180px,
 <div class="film-card"><img src="https://multiplayer.net-cdn.it/thumbs/images/2024/05/19/sepolcride_jpg_800x0_crop_upscale_q85.jpg" alt=""><span class="film-label">URBAN</span></div>
 <div class="film-card"><img src="https://articles-img.sftcdn.net/t_articles/auto-mapping-folder/sites/3/2022/03/GTA-V-4-1024x576.jpg" alt=""><span class="film-label">DETAILS</span></div>
 </div></div></section>
-<section id="contact" class="contact"><div class="eyebrow" data-i18n="letsWork">LET'S WORK TOGETHER</div><h2 data-i18n="contactTitle">Есть идея для карты?</h2><p data-i18n="contactText">Напиши мне, и вместе обсудим будущий проект.</p><a class="button green" href="mailto:your@email.com" data-i18n="writeMe">Написать мне ↗</a></section>
+<section id="contact" class="contact"><div class="eyebrow" data-i18n="letsWork">LET'S WORK TOGETHER</div><h2 data-i18n="contactTitle">Есть идея для карты?</h2><p data-i18n="contactText">Напиши мне, и вместе обсудим будущий проект.</p><button class="button green" type="button" id="writeMeButton" data-i18n="writeMe">Написать мне ↗</button></section>
 </main>
 <footer class="footer"><div>© 2026 <span>PEDRO</span> · Mapper Portfolio</div><div data-i18n="footerText">Built with passion for game worlds</div></footer>
 </div>
@@ -380,6 +552,212 @@ const language=document.getElementById('language'),langToggle=document.getElemen
 const langMeta={en:{flag:'🇬🇧',name:'English'},ru:{flag:'🇷🇺',name:'Русский'},fr:{flag:'🇫🇷',name:'Français'},uk:{flag:'🇺🇦',name:'Українська'}};
 function applyLanguage(lang){const dict=translations[lang]||translations.en;const meta=langMeta[lang]||langMeta.en;document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(dict[key]!==undefined)el.innerHTML=dict[key]});langOptions.forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang));currentFlag.textContent=meta.flag;langToggle.querySelector('.label').textContent=meta.name;localStorage.setItem('pedro-language',lang)}
 langToggle.addEventListener('click',()=>{const open=language.classList.toggle('open');langToggle.setAttribute('aria-expanded',String(open))});langOptions.forEach(btn=>btn.addEventListener('click',()=>{applyLanguage(btn.dataset.lang);language.classList.remove('open');langToggle.setAttribute('aria-expanded','false')}));document.addEventListener('click',e=>{if(!language.contains(e.target)){language.classList.remove('open');langToggle.setAttribute('aria-expanded','false')}});applyLanguage(localStorage.getItem('pedro-language')||'ru');
+</script>
+
+<!-- Local Discord contact modal -->
+<div class="discord-modal" id="discordModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="discordModalTitle">
+  <div class="discord-modal-box" role="document">
+    <button class="discord-modal-close" id="discordModalClose" type="button" aria-label="Закрыть">×</button>
+    <div class="discord-modal-icon">D</div>
+    <h3 id="discordModalTitle" data-i18n="discordModalTitle">Написать мне в Discord</h3>
+    <p id="discordModalText" data-i18n="discordModalText">Можете написать мне в личные сообщения в Discord. Я постараюсь ответить вам как можно скорее.</p>
+
+    <div class="discord-name">
+      <span id="discordUsername">pedrochil</span>
+      <button class="discord-copy" id="discordCopy" type="button" data-i18n="discordCopy">Скопировать</button>
+    </div>
+
+    <div class="discord-modal-actions">
+      <button class="button" id="discordModalDone" type="button" data-i18n="discordDone">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const openBtn = document.getElementById('writeMeButton');
+  const modal = document.getElementById('discordModal');
+  const closeBtn = document.getElementById('discordModalClose');
+  const doneBtn = document.getElementById('discordModalDone');
+  const copyBtn = document.getElementById('discordCopy');
+  const username = 'pedrochil';
+
+  if (!openBtn || !modal) return;
+
+  const openModal = () => {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    openBtn.focus();
+  };
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  doneBtn?.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+
+  copyBtn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(username);
+      const original = copyBtn.textContent;
+      copyBtn.textContent = '✓';
+      setTimeout(() => {
+        copyBtn.textContent = original;
+      }, 1200);
+    } catch {
+      window.prompt('Скопируйте Discord:', username);
+    }
+  });
+})();
+</script>
+
+
+
+<!-- Floating music player -->
+<div class="music-player paused" id="musicPlayer" aria-label="Музыкальный плеер">
+  <div class="music-top">
+    <div class="music-art" aria-hidden="true">
+      <span class="music-bar"></span><span class="music-bar"></span><span class="music-bar"></span>
+      <span class="music-bar"></span><span class="music-bar"></span><span class="music-bar"></span>
+    </div>
+    <div class="music-info">
+      <div class="music-title">Курю под дождем</div>
+      <div class="music-artist">юность грома</div>
+    </div>
+    <button class="music-play" id="musicPlay" type="button" aria-label="Воспроизвести">
+      <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5.2v13.6c0 .8.9 1.3 1.6.9l10-6.8c.6-.4.6-1.3 0-1.7l-10-6.8C8.9 4 8 4.4 8 5.2Z"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" style="display:none"><path d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg>
+    </button>
+  </div>
+  <div class="music-bottom">
+    <div class="music-volume-icon" id="musicMute" role="button" tabindex="0" aria-label="Выключить звук">
+      <svg class="volume-on" viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.2c1.2 1.2 1.2 4.4 0 5.6M18.7 6.8c2.4 2.6 2.4 8 0 10.4"/></svg>
+      <svg class="volume-off" viewBox="0 0 24 24" style="display:none"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>
+    </div>
+    <input class="music-range" id="musicProgress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Прогресс трека">
+    <div class="music-time"><span id="musicCurrent">0:00</span> / <span id="musicDuration">2:10</span></div>
+  </div>
+  <div class="music-volume">
+    <input class="music-range" id="musicVolume" type="range" min="0" max="1" value="0.55" step="0.01" aria-label="Громкость">
+  </div>
+  <audio id="musicAudio" preload="metadata" src="yunost-groma-kuryu-pod-dozhdem.mp3"></audio>
+</div>
+
+<script>
+(() => {
+  const player = document.getElementById('musicPlayer');
+  const audio = document.getElementById('musicAudio');
+  const play = document.getElementById('musicPlay');
+  const progress = document.getElementById('musicProgress');
+  const volume = document.getElementById('musicVolume');
+  const mute = document.getElementById('musicMute');
+  const current = document.getElementById('musicCurrent');
+  const duration = document.getElementById('musicDuration');
+  const playIcon = play.querySelector('.play-icon');
+  const pauseIcon = play.querySelector('.pause-icon');
+  const volumeOn = mute.querySelector('.volume-on');
+  const volumeOff = mute.querySelector('.volume-off');
+
+  audio.volume = Number(volume.value);
+
+  const formatTime = seconds => {
+    if (!Number.isFinite(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+    return `${mins}:${secs}`;
+  };
+
+  const syncPlayState = () => {
+    const playing = !audio.paused;
+    player.classList.toggle('paused', !playing);
+    playIcon.style.display = playing ? 'none' : '';
+    pauseIcon.style.display = playing ? '' : 'none';
+    play.setAttribute('aria-label', playing ? 'Пауза' : 'Воспроизвести');
+  };
+
+  play.addEventListener('click', async () => {
+    if (audio.paused) {
+      try { await audio.play(); } catch (e) {}
+    } else {
+      audio.pause();
+    }
+    syncPlayState();
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    duration.textContent = formatTime(audio.duration);
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const percent = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+    progress.value = percent;
+    progress.style.setProperty('--progress', `${percent}%`);
+    current.textContent = formatTime(audio.currentTime);
+  });
+
+  progress.addEventListener('input', () => {
+    if (audio.duration) audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+  });
+
+  volume.addEventListener('input', () => {
+    audio.volume = Number(volume.value);
+    audio.muted = audio.volume === 0;
+    volumeOn.style.display = audio.muted ? 'none' : '';
+    volumeOff.style.display = audio.muted ? '' : 'none';
+  });
+
+  const toggleMute = () => {
+    audio.muted = !audio.muted;
+    volumeOn.style.display = audio.muted ? 'none' : '';
+    volumeOff.style.display = audio.muted ? '' : 'none';
+  };
+  mute.addEventListener('click', toggleMute);
+  mute.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMute(); }
+  });
+
+  audio.addEventListener('ended', () => {
+    audio.currentTime = 0;
+    syncPlayState();
+  });
+
+  // Subtle 3D tilt: the card leans toward whichever side the cursor approaches.
+  player.addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch') return;
+    const r = player.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    const rotateY = (x - .5) * 7;
+    const rotateX = (.5 - y) * 7;
+    player.style.setProperty('--mx', `${x * 100}%`);
+    player.style.setProperty('--my', `${y * 100}%`);
+    player.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px) scale(1.012)`;
+  });
+  player.addEventListener('pointerleave', () => {
+    player.style.transform = '';
+    player.style.setProperty('--mx', '50%');
+    player.style.setProperty('--my', '50%');
+  });
+
+  syncPlayState();
+})();
 </script>
 </body>
 </html>
