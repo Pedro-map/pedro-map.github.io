@@ -813,7 +813,7 @@ langToggle.addEventListener('click',()=>{const open=language.classList.toggle('o
   const volumeOn = mute.querySelector('.volume-on');
   const volumeOff = mute.querySelector('.volume-off');
 
-  audio.volume = 0.20; volume.value = "0.20";
+  audio.volume = Number(volume.value);
 
   const formatTime = seconds => {
     if (!Number.isFinite(seconds)) return '0:00';
@@ -855,7 +855,7 @@ langToggle.addEventListener('click',()=>{const open=language.classList.toggle('o
   });
 
   volume.addEventListener('input', () => {
-    audio.volume = 0.20; volume.value = "0.20";
+    audio.volume = Number(volume.value);
     audio.muted = audio.volume === 0;
     volumeOn.style.display = audio.muted ? 'none' : '';
     volumeOff.style.display = audio.muted ? '' : 'none';
@@ -894,11 +894,11 @@ langToggle.addEventListener('click',()=>{const open=language.classList.toggle('o
     player.style.setProperty('--my', '50%');
   });
 
-  // Try to start music immediately at 20%. Browsers may block audible autoplay;
+  // Try to start music immediately at 10%. Browsers may block audible autoplay;
   // if blocked, start it on the user's first interaction with the page.
   const tryAutoplay = async () => {
-    audio.volume = 0.20;
-    volume.value = "0.20";
+    audio.volume = 0.10;
+    volume.value = "0.10";
     try {
       await audio.play();
       syncPlayState();
@@ -986,10 +986,10 @@ langToggle.addEventListener('click',()=>{const open=language.classList.toggle('o
   <div class="theme-menu" id="themeMenu">
     <div class="theme-menu-title">Theme</div>
     <button class="theme-option" type="button" data-theme="old">
-      <i class="theme-dot old"></i><span>Old — Green</span>
+      <i class="theme-dot old"></i><span>Classic — Green</span>
     </button>
     <button class="theme-option" type="button" data-theme="new">
-      <i class="theme-dot new"></i><span>New — Purple</span>
+      <i class="theme-dot new"></i><span>Violet — Purple</span>
     </button>
   </div>
 </div>
