@@ -295,6 +295,7 @@ body{background:linear-gradient(180deg,#0b0e13,#07090d 45%,#080a0e)}
 ::-webkit-scrollbar{width:11px;height:11px}::-webkit-scrollbar-track{background:#07090d}
 ::-webkit-scrollbar-thumb{background:#262a31;border-radius:11px;border:3px solid #07090d;min-height:48px}::-webkit-scrollbar-thumb:hover{background:#3a3f49}::-webkit-scrollbar-thumb:active{background:#4a505b}::-webkit-scrollbar-corner{background:#07090d}
 @supports not selector(::-webkit-scrollbar){html{scrollbar-width:thin;scrollbar-color:#2a2e35 #07090d}}
+.mpn{width:34px;height:34px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#c4cad3;display:grid;place-items:center;cursor:pointer;transition:.18s}.mpn:hover{border-color:var(--o);color:var(--o)}.mpn svg{width:14px;height:14px;fill:currentColor}
 @media(max-width:900px){nav{display:none}.cg{grid-template-columns:1fr;gap:34px}.chap.rev .win{order:0}.fg{grid-template-columns:1fr}.lbd{grid-template-columns:1fr}.lbi{min-height:46vh}.lbn{padding:24px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style></head><body class="nl" data-sound-volume="0.5">
@@ -344,9 +345,9 @@ body{background:linear-gradient(180deg,#0b0e13,#07090d 45%,#080a0e)}
 <div class="cp"><span>© 2026 PEDRO · Mapper Portfolio</span><span><a href="#" id="conl">~ console</a> · <span data-i18n="footerText">Built with passion for game worlds</span></span></div></div></footer>
 
 <div class="con" id="con" aria-label="Console"><div class="cono" id="cono"></div><div class="conin"><span>]</span><input id="coni" autocomplete="off" spellcheck="false" aria-label="Console input"></div></div>
-<div class="mp paused" id="mp" role="region" aria-label="Music player"><div class="mtop"><div class="art" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="mi"><div class="mt">Alternative Outro [Instrumental]</div><div class="ma">LUCKI · Slowed &amp; Reverbed</div></div><button class="mpb" id="mpb" type="button" aria-label="Play / Pause"><svg class="pl" viewBox="0 0 24 24"><path d="M8 5.2v13.6c0 .8.9 1.3 1.6.9l10-6.8c.6-.4.6-1.3 0-1.7l-10-6.8C8.9 4 8 4.4 8 5.2Z"/></svg><svg class="ps" viewBox="0 0 24 24"><path d="M7 5h3.4v14H7zM13.6 5H17v14h-3.4z"/></svg></button></div>
+<div class="mp paused" id="mp" role="region" aria-label="Music player"><div class="mtop"><div class="art" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="mi"><div class="mt">Alternative Outro [Instrumental]</div><div class="ma">LUCKI · Slowed &amp; Reverbed</div></div><button class="mpn" id="mn" type="button" aria-label="Next track"><svg viewBox="0 0 24 24"><path d="M6 6l9 6-9 6V6zm10.5 0H19v12h-2.5V6z"/></svg></button><button class="mpb" id="mpb" type="button" aria-label="Play / Pause"><svg class="pl" viewBox="0 0 24 24"><path d="M8 5.2v13.6c0 .8.9 1.3 1.6.9l10-6.8c.6-.4.6-1.3 0-1.7l-10-6.8C8.9 4 8 4.4 8 5.2Z"/></svg><svg class="ps" viewBox="0 0 24 24"><path d="M7 5h3.4v14H7zM13.6 5H17v14h-3.4z"/></svg></button></div>
 <div class="mbot"><button class="mm" id="mm" type="button" aria-label="Mute"><svg class="von" viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9.2c1.2 1.2 1.2 4.4 0 5.6"/></svg><svg class="voff" viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9l4 6M21 9l-4 6"/></svg></button><button class="mm" id="mr" type="button" aria-label="Rain sound"><svg viewBox="0 0 24 24"><path d="M7 15a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 8a3.5 3.5 0 0 1 .5 6.96"/><path d="M8 18l-1 3M12 18l-1 3M16 18l-1 3"/></svg></button><input id="mpr" type="range" min="0" max="100" step=".1" value="0" aria-label="Progress"><div class="mtm"><span id="mc">0:00</span> / <span id="md">0:00</span></div></div>
-<div class="mvol"><input id="mv" type="range" min="0" max="1" step=".01" value=".1" aria-label="Volume"></div><audio id="au" src="alternative-outro-lucki-x-i-dont-know-you-anymore.mp3" preload="auto" loop></audio></div>
+<div class="mvol"><input id="mv" type="range" min="0" max="1" step=".01" value=".1" aria-label="Volume"></div><audio id="au" preload="auto"></audio></div>
 
 <div class="md" id="dm"><div class="mb"><button class="x" data-close type="button">×</button><div class="lg">D</div><h3 data-i18n="discordTitle">Написать мне в Discord</h3><p data-i18n="discordText"></p><div class="dn"><span>pedrochil</span><button id="cp" type="button" data-i18n="discordCopy">Скопировать</button></div><button class="bt" data-close type="button" data-i18n="discordClose">Закрыть</button></div></div>
 
@@ -414,7 +415,16 @@ $('#pv').onclick=e=>{flash(e.currentTarget);step(-1)};$('#nx').onclick=e=>{flash
 addEventListener('keydown',e=>{if(e.key==='Escape'){shut();closeDD()}if($('#lb').classList.contains('open')){if(e.key==='ArrowLeft'){flash($('#pv'));step(-1)}if(e.key==='ArrowRight'){flash($('#nx'));step(1)}}});
 /* ---------- music player (one audio element, never touched by language/scroll) ---------- */
 const au=$('#au'),mp=$('#mp'),mv=$('#mv');let userPaused=false;
-let v=.1;try{const s=parseFloat(localStorage.getItem('pedro-vol'));if(s>=0&&s<=1)v=s}catch(e){}
+const TRACKS=[
+{s:['alternative-outro-lucki-x-i-dont-know-you-anymore.mp3',encodeURIComponent('LUCKI - Alternative Outro [Instrumental] (Slowed & Reverbed).mp3'),'alternative-outro.mp3'],n:['Alternative Outro [Instrumental]','LUCKI · Slowed & Reverbed']},
+{s:['deashou_crueshi_-_NO_MORE_TEARS__mp3uk_net_.mp3'],n:['NO MORE TEARS','deashou crueshi']},
+{s:['Peter__Paul_and_Mary_-_500_Miles__mp3uk_net_.mp3'],n:['500 Miles','Peter, Paul and Mary']}];
+let tri=-1,tvar=0,queue=[],lastIdx=-1;const failed=new Set();
+const shuf=()=>{const a=TRACKS.map((_,i)=>i).filter(i=>!failed.has(i));for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}if(a.length>1&&a[0]===lastIdx)a.push(a.shift());return a};
+function loadTrack(i,v){tri=i;tvar=v||0;lastIdx=i;au.src=TRACKS[i].s[tvar];mp.querySelector('.mt').textContent=TRACKS[i].n[0];mp.querySelector('.ma').textContent=TRACKS[i].n[1]}
+function nextTrack(play){if(!queue.length)queue=shuf();if(!queue.length){mp.querySelector('.ma').textContent='mp3 не найден';sync();return}loadTrack(queue.shift());if(play)au.play().then(()=>{sync();off()}).catch(()=>{})}
+nextTrack(false);
+let v=.1;try{const s=parseFloat(localStorage.getItem('pedro-vol'));if(s>=.02&&s<=1)v=s}catch(e){}
 au.volume=v;mv.value=v;
 const sync=()=>mp.classList.toggle('paused',au.paused);
 const kick=e=>{if(e&&e.target.closest&&e.target.closest('#mp'))return;if(userPaused||!au.paused){off();return}au.play().then(()=>{sync();off()}).catch(()=>{})};
@@ -424,7 +434,9 @@ au.play().then(sync).catch(()=>{});
 $('#mpb').onclick=()=>{if(au.paused){userPaused=false;off();au.play().then(sync).catch(()=>{})}else{userPaused=true;au.pause();sync()}};
 mv.oninput=()=>{au.volume=+mv.value;try{localStorage.setItem('pedro-vol',mv.value)}catch(e){}};
 ['play','pause','ended'].forEach(t=>au.addEventListener(t,sync));
-au.addEventListener('error',()=>{off();sync()});
+au.addEventListener('error',()=>{const tk=TRACKS[tri];if(tvar<tk.s.length-1){loadTrack(tri,tvar+1);if(!userPaused)au.play().catch(()=>{});return}
+failed.add(tri);queue=queue.filter(i=>i!==tri);if(failed.size>=TRACKS.length){mp.querySelector('.ma').textContent='mp3 не найден: '+TRACKS[0].s[0];sync();return}nextTrack(!userPaused)});
+au.addEventListener('ended',()=>nextTrack(true));$('#mn').onclick=()=>{userPaused=false;nextTrack(true)};
 const fm=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00',pr=$('#mpr');
 const tick=()=>{const p=au.duration?au.currentTime/au.duration*100:0;if(document.activeElement!==pr)pr.value=p;pr.style.setProperty('--p',p+'%');$('#mc').textContent=fm(au.currentTime);$('#md').textContent=fm(au.duration)};
 ['timeupdate','loadedmetadata','durationchange'].forEach(t=>au.addEventListener(t,tick));
@@ -486,13 +498,13 @@ function conOpen(o){con.classList.toggle('open',o);if(o){if(!cono.children.lengt
 const SECT={top:'#top',works:'#works',compare:'#compare',about:'#lore',process:'#process',projects:'#projects',contact:'#contact'};
 function curSec(){let c='top';for(const k in SECT){const e=document.querySelector(SECT[k]);if(e&&e.getBoundingClientRect().top<innerHeight*.4)c=k}return c}
 const CMD={
-help(){cout('help · status · maps · map <n> · goto <section> · lang <en|ru|fr|uk>\nmusic <play|pause|vol 0-100> · rain <on|off> · clear · exit')},
+help(){cout('help · status · maps · map <n> · goto <section> · lang <en|ru|fr|uk>\nmusic <play|pause|next|vol 0-100> · rain <on|off> · clear · exit')},
 status(){cout(`hostname : PEDRO portfolio\nmap      : ${curSec()}\nlang     : ${L}\nmusic    : ${au.paused?'paused':'playing'} @ ${Math.round(au.volume*100)}%\nrain     : ${rain.on?'on':'off'}\nmaps     : ${P.length}`)},
 maps(){P.forEach((p,i)=>cout(`${i+1}. ${ttl(i)}  [${p.tag}]`))},
 map(a){const n=+a[0];if(!P[n-1])return cout('usage: map <1-'+P.length+'>','err');conOpen(false);cur=n-1;ix=0;setSig(cur);show(false);open($('#lb'))},
 goto(a){const s=SECT[a[0]];if(!s)return cout('sections: '+Object.keys(SECT).join(', '),'err');conOpen(false);document.querySelector(s).scrollIntoView({behavior:'smooth'})},
 lang(a){if(!D[a[0]])return cout('usage: lang <en|ru|fr|uk>','err');applyLang(a[0],true);cout('language: '+a[0])},
-music(a){if(a[0]==='play'){userPaused=false;au.play().then(sync).catch(()=>cout('cannot play audio','err'))}else if(a[0]==='pause'){userPaused=true;au.pause();sync()}else if(a[0]==='vol'&&a[1]!==undefined){const v=Math.min(100,Math.max(0,+a[1]||0))/100;au.volume=v;mv.value=v;vp()}else cout('usage: music <play|pause|vol 0-100>','err')},
+music(a){if(a[0]==='next'){userPaused=false;nextTrack(true);return}if(a[0]==='play'){userPaused=false;au.play().then(sync).catch(()=>cout('cannot play audio','err'))}else if(a[0]==='pause'){userPaused=true;au.pause();sync()}else if(a[0]==='vol'&&a[1]!==undefined){const v=Math.min(100,Math.max(0,+a[1]||0))/100;au.volume=v;mv.value=v;vp()}else cout('usage: music <play|pause|next|vol 0-100>','err')},
 rain(a){if(a[0]!=='on'&&a[0]!=='off')return cout('usage: rain <on|off>','err');rainSet(a[0]==='on')},
 clear(){cono.innerHTML=''},exit(){conOpen(false)},quit(){conOpen(false)}};
 coni.addEventListener('keydown',e=>{if(e.key==='Enter'){const line=coni.value.trim();coni.value='';if(!line)return;hist.push(line);hi=hist.length;cout('] '+line,'dim');const [c,...a]=line.split(/\s+/);(CMD[c.toLowerCase()]||(()=>cout('Unknown command "'+c+'"','err')))(a)}
